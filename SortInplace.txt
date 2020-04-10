@@ -10,18 +10,18 @@ Write your code in this editor and press "Run" button to compile and execute it.
 #include<bits/stdc++.h> 
 using namespace std;
 
-int getMin(int arr[], int size)
+int getMin(int arr[], int arrSize)
 {
    
-   if(size <=0 )
+   if(arrSize <=0 )
    return -1;
    
-    for(int i=0;i<size;i++)
+    for(int i=0;i<arrSize;i++)
     cout<<arr[i];
     
     int min = INT_MAX;
     
-    for(int i=0;i<size;i++)
+    for(int i=0;i<arrSize;i++)
     {
       if(min > arr[i])
        min = arr[i];
@@ -30,77 +30,84 @@ int getMin(int arr[], int size)
      return min;
 }
 
-int sortFun(int arr[],int size)
+int sortFun(int arr[],int arrSize)
 { 
 
-    int ls = getMin(arr,size );
+    int iLastSwaped = getMin(arr,arrSize );
     
-    
-    
-    
-    int si =  -1;
+ 
+    int iSwapIndex =  -1;
     int i =  0;
     int j = 0;
-    bool lst = false;
-    while(i<size)
+    bool bNoSwapInd = false;
+    while(i<arrSize)
     {
         
         j= i+1;
-        si = -1;
-        cout<<"\nls = "<<ls;
-        cout<<"\narr[i "<<i<<"]"<<arr[i];
-        lst = false;
-        while(j < size)
+        iSwapIndex = -1;
+        //cout<<"\niLastSwaped = "<<iLastSwaped;
+        //cout<<"\narr[i "<<i<<"]"<<arr[i];
+        bNoSwapInd = false;
+        while(j < arrSize)
         {
-            cout<<"\nwhile arr[j "<<j<<"]"<<arr[j] << " ls = "<<ls;
-            if(arr[i] > arr[j] && arr[j] == ls)
+            cout<<"\narr[i = "<<i<<"] : "<<arr[i]<<" , arr[j = "<<j<<"] : "<<arr[j] << " ,iLastSwaped = "<<iLastSwaped;
+            if(arr[i] > arr[j] && arr[j] == iLastSwaped)
             {
-                si = j;
+                iSwapIndex = j;
                 break;
 
             }
             else if(arr[i] > arr[j] )
             {
-                si = j;
+                iSwapIndex = j;
             }
             else
             {
-                si = -1;
-                lst = true;
-                cout<<"i in lstz";
+                iSwapIndex = -1;
+                bNoSwapInd = true;
+               
             }
-            
-            
+
             j++;
         }
         
-         cout<<"\narr[j "<<j<<"]"<<arr[j];
+        
         int tmp =0;
-        if( si != -1)
+        if( iSwapIndex != -1)
         {
+            if(j < arrSize)
+            cout<<"\nSwapped index  j : "<<j<<" Value : "<<arr[j];
+            
             tmp = arr[i];
-            arr[i] = arr[si];
-            arr[si] =tmp;
+            arr[i] = arr[iSwapIndex];
+            arr[iSwapIndex] =tmp;
             
         }
-             if(lst == true)
-             {   
-               cout<<"\nAssinging lst as arr[i]";
-               ls = arr[i];
-             }
-             else
-               ls = arr[si];
+        else
+         cout<<"\nNo Swapping";
+         
+        if(bNoSwapInd == true)
+        {   
+          
+          iLastSwaped = arr[i];
+          cout<<"\nStoring last swaped value : " << iLastSwaped;
+        }
+        else
+          iLastSwaped = arr[iSwapIndex];
                    
-        cout<<"\n";
-    for(int i=0;i<size;i++)
-    cout<<arr[i];
+        cout<<"\n\nAfter Swaping Index j Result Looks Like as Follow = ";
+        for(int i=0;i<arrSize;i++)
+        cout<<arr[i];
+		cout<<"\n";
         i++;
         j = 0;
+        cout<<"------------ Going For Next iteration ------------\n";
     }
    
-   cout<<"\n after sorting "; 
-    for(int i=0;i<size;i++)
+    cout<<"\n\n----------after sorting Final OutPut----------\n"; 
+    for(int i=0;i<arrSize;i++)
     cout<<arr[i];
+    cout<<"\n------------------End-------------------------"; 
 }
 
 int main()
@@ -110,8 +117,8 @@ int main()
  
     int arr[] = {1,0,2,1,0,2,2,1,0};
 
-    int size = sizeof(arr)/sizeof(arr[0]);    
-    sortFun(arr, size); 
+    int iSize = sizeof(arr)/sizeof(arr[0]);    
+    sortFun(arr, iSize); 
     cout<<"\nHello World";
     
 
