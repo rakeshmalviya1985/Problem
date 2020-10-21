@@ -1,0 +1,46 @@
+/*******************************************************************
+*
+*  Program for array rotation
+*  time complexity : O(r*n) , space Complexity : O(1)
+********************************************************************/
+void rotateFun(int arr[],int size , int rotate)
+{
+    int tmp = 0;
+    int j = 0;
+    for(int i = 0;i<rotate;i++)
+    {
+        tmp = arr[i];
+        for(j=0;j<size-1;j++)
+        {
+            arr[j] = arr[j+1];
+        }
+        
+        arr[j] = tmp;
+    }
+    
+     for(j=0;j<size;j++)
+     cout<<" "<<arr[j];
+}
+
+/******** time complexity : O(n) , space Complexity : O(r) *******/
+
+void rotateFun(int arr[],int size , int rotate)
+{
+int *ptr = new int[rotate*sizeof(int)];
+int i = 0;
+int k = 0;
+    for( i = 0 ;i<rotate;i++)
+        ptr[i] = arr[i];
+        
+    for(;i<size;i++)
+    {
+        arr[k] = arr[i];
+        k++;
+    }
+    
+    for(int j = 0;j<rotate;j++)
+        arr[k] = ptr[j];
+    
+     for(int j=0;j<size;j++)
+     cout<<" "<<arr[j];
+}
