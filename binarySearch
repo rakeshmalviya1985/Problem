@@ -1,0 +1,42 @@
+/*******************************************************************
+*  find more detail on youtube @equalconnect Coach
+*  How to do Binary search in array 
+*  time complexity : O(logn) , space Complexity : O(1)
+********************************************************************/
+
+#include <bits/stdc++.h> 
+using namespace std; 
+  
+
+int binarySearch(int arr[], int start, int end, int element) 
+{ 
+    if (end >= start)
+    { 
+        int mid = start + (end-start)/2;
+        if(element == arr[mid])
+        {
+            return mid;
+        }
+        
+        if(element > arr[mid])
+        {
+            return binarySearch(arr,mid+1 , end, element);
+        }
+        else
+        {
+              return binarySearch(arr,start , mid-1, element);
+        }
+    }
+    return -1; 
+} 
+  
+int main(void) 
+{ 
+    int arr[] = { 1, 2 ,3 , 4 , 5 ,10 }; 
+    int x = 10; 
+    int n = sizeof(arr) / sizeof(arr[0]); 
+    int result = binarySearch(arr, 0, n - 1, x); 
+    (result == -1) ? cout << "Element is not present in array"
+                   : cout << "Element is present at index " << result; 
+    return 0; 
+} 
