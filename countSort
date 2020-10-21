@@ -1,0 +1,51 @@
+/*******************************************************************
+*  find more detail on youtube @equalconnect Coach
+*  Count sort
+*  input : {2,1,4,3,5,6};
+*  output: {1,2,3,4,5,6 } 
+*  time complexity : O(logn) , space Complexity : O(1)
+********************************************************************/
+// C++ program to implement recursive Binary Search 
+#include <bits/stdc++.h>
+#define range 255 
+using namespace std; 
+
+void countSort(int arr[] , int size)
+{
+     int count[range+1];
+	 int outPutArray[size+1];
+	 
+	 for(int i =0;i<range+1;i++)
+	    count[i] = 0;
+		
+     for(int i=0;i<size;i++)
+       count[arr[i]] = count[arr[i]]+1;
+       
+      
+     for(int i =1;i<=range;i++)
+	     count[i] = count[i-1]+count[i];
+	     
+	 for(int i =0;i<size;i++)
+	 {
+	       outPutArray[count[arr[i]]-1]    = arr[i];
+		   --count[arr[i]];
+	 }
+	 
+	 cout<<"\n";
+  
+    for(int i =0;i<size;i++)
+	{
+	   arr[i] = outPutArray[i];
+	   cout<<" "<<arr[i];
+	}
+}
+  
+int main(void) 
+{ 
+    int n, arr[]={5,3,2,4,1};
+    n = sizeof(arr) / sizeof(arr[0]);
+
+    countSort(arr,n);
+    return 0;
+ 
+} 
