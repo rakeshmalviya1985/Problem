@@ -10,42 +10,61 @@
 #define range 255 
 using namespace std; 
 
-void countSort(int arr[] , int size)
+void countSort(int arr[] , int n , int k)
 {
-     int count[range+1];
-	 int outPutArray[size+1];
-	 
-	 for(int i =0;i<range+1;i++)
-	    count[i] = 0;
-		
-     for(int i=0;i<size;i++)
-       count[arr[i]] = count[arr[i]]+1;
-       
-      
-     for(int i =1;i<=range;i++)
-	     count[i] = count[i-1]+count[i];
-	     
-	 for(int i =0;i<size;i++)
-	 {
-	       outPutArray[count[arr[i]]-1]    = arr[i];
-		   --count[arr[i]];
-	 }
-	 
-	 cout<<"\n";
-  
-    for(int i =0;i<size;i++)
-	{
-	   arr[i] = outPutArray[i];
-	   cout<<" "<<arr[i];
-	}
+    int tmpArr[n];
+    int count[k] = {0};
+    
+    for(int i =0;i<n;i++)
+    ++count[arr[i]];
+    
+    for(int i =1;i<=k;i++)
+      count[i]+=count[i-1];
+
+      for (int i = 0; i < k; i++)
+        cout << count[i] << " ";   
+
+        
+    for(int i =n-1;i>=0;i--) 
+    {
+     tmpArr[count[arr[i]]-1] = arr[i];
+     --count[arr[i]];
+    }
+     
+     for (int i = 0; i<n ;i++) 
+     {
+        arr[i] = tmpArr[i]; 
+        cout<<" "<<arr[i];
+     }
+    
 }
   
+int getMax(int arr[] , int size)
+{
+    int tmpMax = INT_MIN;
+    
+    for(int i = 0;i<size;i++)
+    {
+        if(arr[i]>tmpMax)
+         tmpMax = arr[i];
+    }
+  
+  
+    
+    return tmpMax;
+}
 int main(void) 
 { 
-    int n, arr[]={5,3,2,4,1};
+    int n, arr[]={5,3,2,4,9};
     n = sizeof(arr) / sizeof(arr[0]);
 
-    countSort(arr,n);
+    int max = getMax(arr,n);
+    cout<<" max : "<<max<<"\n";
+    
+
+    countSort(arr,n,max);
+       
+    
     return 0;
  
 } 
