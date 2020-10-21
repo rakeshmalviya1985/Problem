@@ -1,0 +1,49 @@
+/*******************************************************************
+*  find more detail on youtube @equalconnect Coach
+*  Please reverse the given array or string 
+*  input : {1,2,3,4,5,6};
+*  output: {6,5,4,3,2,1 } 
+*  time complexity : O(logn) , space Complexity : O(1)
+********************************************************************/
+
+#include <bits/stdc++.h> 
+using namespace std; 
+  
+
+#include <stdio.h> 
+  
+int* reverseStringArr(int arr[] , int size) 
+{ 
+    int *ptr = NULL;
+    int end = size-1;
+    int tmp = 0;
+      //{1,2,3,4,5}
+      for(int start =0;start<size;start++)
+      {
+           if( start < end)
+           {
+               tmp = arr[start];
+               arr[start] = arr[end];
+               arr[end] = tmp;
+               
+               start++;
+               end--;
+           }
+      }
+      ptr = arr;
+
+       return ptr;
+} 
+  
+int main(void) 
+{ 
+    int n, arr[]={1,2,3,4,5};
+    n = sizeof(arr) / sizeof(arr[0]);
+
+    int *ptr = reverseStringArr(arr, n);
+  
+  for(int i =0;i<n;i++)
+  cout<<" "<<ptr[i];
+    return 0; 
+ 
+} 
