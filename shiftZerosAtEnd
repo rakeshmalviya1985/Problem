@@ -1,3 +1,7 @@
+/*******************************************************************
+*  find more detail on youtube @equalconnect Coach
+*  Shift all the zeros at the end
+********************************************************************/
 
 #include <iostream>
 #include <vector>
@@ -5,7 +9,7 @@
 #include <string>
 using namespace std; 
 
-void shiftZeroAtend(int arr[], int size)
+void shiftZeroAtEnd_m1(int arr[], int size)
 {
     int j = size-1;
     int tmp;
@@ -30,12 +34,31 @@ void shiftZeroAtend(int arr[], int size)
        cout<<" "<<arr[i];
 }
 
+void shiftZeroAtEnd_m2(int arr[] , int size)
+{
+    int j =0;
+    int tmp =0;
+    
+    for(int i =0;i<size;i++)
+    {
+        if(arr[i] != 0)
+        {
+            tmp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = tmp;
+            j++;
+        }
+    }
+    for(int i = 0;i<size;i++)
+       cout<<" "<<arr[i];
+}
+
 int main() 
 { 
 
     int arr[] = {1, 9, 8, 4, 0, 0, 2, 7, 0, 6, 0, 9}; 
     int n = sizeof(arr) / sizeof(arr[0]);
-    shiftZeroAtend(arr,n);
+    shiftZeroAtEnd_m2(arr,n);
 	return 0; 
 } 
 
